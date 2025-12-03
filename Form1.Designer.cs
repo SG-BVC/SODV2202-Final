@@ -1,16 +1,12 @@
-﻿namespace SODV2202_Final
+﻿using System.Drawing;
+using System.Windows.Forms;
+
+namespace SODV2202_Final
 {
     partial class Form1
     {
-        /// <summary>
-        ///  Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        ///  Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -22,200 +18,235 @@
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        ///  Required method for Designer support - do not modify
-        ///  the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            lblPassword = new Label();
-            btnGenerate = new Button();
-            numericUpDownLength = new NumericUpDown();
-            checkBoxUppercase = new CheckBox();
-            checkBoxNumbers = new CheckBox();
-            checkBoxSymbols = new CheckBox();
-            lblStrength = new Label();
-            progressBarStrength = new ProgressBar();
-            buttonCopy = new Button();
-            listHistory = new ListBox();
-            comboBoxTheme = new ComboBox();
-            numericUpDownTimeout = new NumericUpDown();
-            buttonSavePrefs = new Button();
-            buttonLoadPrefs = new Button();
-            txtPassword = new TextBox(); // <-- ADDED HERE
+            components = new System.ComponentModel.Container();
 
-            ((System.ComponentModel.ISupportInitialize)numericUpDownLength).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDownTimeout).BeginInit();
-            SuspendLayout();
-            // 
-            // lblPassword
-            // 
+            // =============================
+            // FORM SETTINGS
+            // =============================
+            this.AutoScaleDimensions = new SizeF(8F, 20F);
+            this.AutoScaleMode = AutoScaleMode.Font;
+            this.ClientSize = new Size(900, 600);
+            this.Name = "Form1";
+            this.Text = "Password Generator Tool";
+            this.StartPosition = FormStartPosition.CenterScreen;
+
+            // =============================
+            // MAIN TAB CONTROL
+            // =============================
+            tabControlMain = new TabControl();
+            tabControlMain.Location = new Point(10, 10);
+            tabControlMain.Size = new Size(880, 580);
+
+            tabPagePassword = new TabPage("Password Generator");
+            tabPageUsers = new TabPage("Users");
+            tabPageHistory = new TabPage("Password History");
+            tabPageFilters = new TabPage("Filters");
+
+            tabControlMain.Controls.Add(tabPagePassword);
+            tabControlMain.Controls.Add(tabPageUsers);
+            tabControlMain.Controls.Add(tabPageHistory);
+            tabControlMain.Controls.Add(tabPageFilters);
+
+            // =========================================================
+            // TAB 1 — PASSWORD GENERATOR UI
+            // =========================================================
+
+            lblPassword = new Label();
             lblPassword.AutoSize = true;
-            lblPassword.Location = new Point(12, 9);
-            lblPassword.Name = "lblPassword";
-            lblPassword.Size = new Size(143, 20);
-            lblPassword.TabIndex = 0;
+            lblPassword.Location = new Point(20, 20);
             lblPassword.Text = "Generated Password";
-            // 
-            // btnGenerate
-            // 
-            btnGenerate.Location = new Point(12, 32);
-            btnGenerate.Name = "btnGenerate";
-            btnGenerate.Size = new Size(94, 29);
-            btnGenerate.TabIndex = 1;
+
+            txtPassword = new TextBox();
+            txtPassword.Location = new Point(20, 50);
+            txtPassword.Size = new Size(350, 27);
+
+            btnGenerate = new Button();
+            btnGenerate.Location = new Point(20, 90);
+            btnGenerate.Size = new Size(120, 30);
             btnGenerate.Text = "Generate";
-            btnGenerate.UseVisualStyleBackColor = true;
             btnGenerate.Click += btnGenerate_Click_1;
-            // 
-            // numericUpDownLength
-            // 
-            numericUpDownLength.Location = new Point(112, 32);
-            numericUpDownLength.Maximum = new decimal(new int[] { 30, 0, 0, 0 });
-            numericUpDownLength.Name = "numericUpDownLength";
-            numericUpDownLength.Size = new Size(150, 27);
-            numericUpDownLength.TabIndex = 2;
-            // 
-            // checkBoxUppercase
-            // 
-            checkBoxUppercase.AutoSize = true;
-            checkBoxUppercase.Location = new Point(282, 8);
-            checkBoxUppercase.Name = "checkBoxUppercase";
-            checkBoxUppercase.Size = new Size(101, 24);
-            checkBoxUppercase.TabIndex = 3;
+
+            numericUpDownLength = new NumericUpDown();
+            numericUpDownLength.Location = new Point(160, 92);
+            numericUpDownLength.Maximum = 30;
+            numericUpDownLength.Size = new Size(100, 27);
+
+            checkBoxUppercase = new CheckBox();
             checkBoxUppercase.Text = "Uppercase";
-            checkBoxUppercase.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxNumbers
-            // 
-            checkBoxNumbers.AutoSize = true;
-            checkBoxNumbers.Location = new Point(282, 35);
-            checkBoxNumbers.Name = "checkBoxNumbers";
-            checkBoxNumbers.Size = new Size(91, 24);
-            checkBoxNumbers.TabIndex = 4;
+            checkBoxUppercase.Location = new Point(20, 140);
+
+            checkBoxNumbers = new CheckBox();
             checkBoxNumbers.Text = "Numbers";
-            checkBoxNumbers.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxSymbols
-            // 
-            checkBoxSymbols.AutoSize = true;
-            checkBoxSymbols.Location = new Point(282, 62);
-            checkBoxSymbols.Name = "checkBoxSymbols";
-            checkBoxSymbols.Size = new Size(87, 24);
-            checkBoxSymbols.TabIndex = 5;
+            checkBoxNumbers.Location = new Point(20, 170);
+
+            checkBoxSymbols = new CheckBox();
             checkBoxSymbols.Text = "Symbols";
-            checkBoxSymbols.UseVisualStyleBackColor = true;
-            // 
-            // lblStrength
-            // 
+            checkBoxSymbols.Location = new Point(20, 200);
+
+            lblStrength = new Label();
+            lblStrength.Location = new Point(20, 240);
             lblStrength.AutoSize = true;
-            lblStrength.Location = new Point(417, 9);
-            lblStrength.Name = "lblStrength";
-            lblStrength.Size = new Size(50, 20);
-            lblStrength.TabIndex = 6;
-            lblStrength.Text = "label1";
-            // 
-            // progressBarStrength
-            // 
-            progressBarStrength.Location = new Point(417, 32);
-            progressBarStrength.Name = "progressBarStrength";
-            progressBarStrength.Size = new Size(371, 29);
-            progressBarStrength.TabIndex = 7;
-            // 
-            // buttonCopy
-            // 
-            buttonCopy.Location = new Point(417, 67);
-            buttonCopy.Name = "buttonCopy";
-            buttonCopy.Size = new Size(94, 29);
-            buttonCopy.TabIndex = 8;
+            lblStrength.Text = "Strength:";
+
+            progressBarStrength = new ProgressBar();
+            progressBarStrength.Location = new Point(20, 265);
+            progressBarStrength.Size = new Size(350, 25);
+
+            buttonCopy = new Button();
+            buttonCopy.Location = new Point(20, 305);
+            buttonCopy.Size = new Size(100, 30);
             buttonCopy.Text = "Copy";
-            buttonCopy.UseVisualStyleBackColor = true;
             buttonCopy.Click += buttonCopy_Click;
-            // 
-            // listHistory
-            // 
-            listHistory.FormattingEnabled = true;
-            listHistory.Location = new Point(417, 102);
-            listHistory.Name = "listHistory";
-            listHistory.Size = new Size(371, 344);
-            listHistory.TabIndex = 9;
-            // 
-            // comboBoxTheme
-            // 
-            comboBoxTheme.FormattingEnabled = true;
-            comboBoxTheme.Location = new Point(12, 67);
-            comboBoxTheme.Name = "comboBoxTheme";
-            comboBoxTheme.Size = new Size(151, 28);
-            comboBoxTheme.TabIndex = 10;
-            comboBoxTheme.Items.Add("Light");
-            comboBoxTheme.Items.Add("Dark");
+
+            comboBoxTheme = new ComboBox();
+            comboBoxTheme.Location = new Point(20, 345);
+            comboBoxTheme.Size = new Size(150, 28);
+            comboBoxTheme.Items.AddRange(new string[] { "Light", "Dark" });
             comboBoxTheme.SelectedIndexChanged += comboBoxTheme_SelectedIndexChanged;
-            // 
-            // numericUpDownTimeout
-            // 
-            numericUpDownTimeout.Location = new Point(12, 102);
-            numericUpDownTimeout.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
-            numericUpDownTimeout.Name = "numericUpDownTimeout";
-            numericUpDownTimeout.Size = new Size(53, 27);
-            numericUpDownTimeout.TabIndex = 11;
-            // 
-            // buttonSavePrefs
-            // 
-            buttonSavePrefs.Location = new Point(12, 409);
-            buttonSavePrefs.Name = "buttonSavePrefs";
-            buttonSavePrefs.Size = new Size(143, 29);
-            buttonSavePrefs.TabIndex = 12;
+
+            numericUpDownTimeout = new NumericUpDown();
+            numericUpDownTimeout.Location = new Point(20, 385);
+            numericUpDownTimeout.Maximum = 60;
+            numericUpDownTimeout.Size = new Size(100, 27);
+
+            buttonSavePrefs = new Button();
+            buttonSavePrefs.Location = new Point(20, 425);
+            buttonSavePrefs.Size = new Size(150, 30);
             buttonSavePrefs.Text = "Save Preferences";
-            buttonSavePrefs.UseVisualStyleBackColor = true;
             buttonSavePrefs.Click += buttonSavePrefs_Click;
-            // 
-            // buttonLoadPrefs
-            // 
-            buttonLoadPrefs.Location = new Point(12, 374);
-            buttonLoadPrefs.Name = "buttonLoadPrefs";
-            buttonLoadPrefs.Size = new Size(143, 29);
-            buttonLoadPrefs.TabIndex = 13;
+
+            buttonLoadPrefs = new Button();
+            buttonLoadPrefs.Location = new Point(20, 465);
+            buttonLoadPrefs.Size = new Size(150, 30);
             buttonLoadPrefs.Text = "Load Preferences";
-            buttonLoadPrefs.UseVisualStyleBackColor = true;
             buttonLoadPrefs.Click += buttonLoadPrefs_Click;
-            // 
-            // txtPassword   <-- FULL PATCH HERE
-            // 
-            txtPassword.Location = new Point(12, 150);
-            txtPassword.Name = "txtPassword";
-            txtPassword.Size = new Size(371, 27);
-            txtPassword.TabIndex = 14;
-            // 
-            // Form1
-            // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(txtPassword); // <-- ADDED
-            Controls.Add(buttonLoadPrefs);
-            Controls.Add(buttonSavePrefs);
-            Controls.Add(numericUpDownTimeout);
-            Controls.Add(comboBoxTheme);
-            Controls.Add(listHistory);
-            Controls.Add(buttonCopy);
-            Controls.Add(progressBarStrength);
-            Controls.Add(lblStrength);
-            Controls.Add(checkBoxSymbols);
-            Controls.Add(checkBoxNumbers);
-            Controls.Add(checkBoxUppercase);
-            Controls.Add(numericUpDownLength);
-            Controls.Add(btnGenerate);
-            Controls.Add(lblPassword);
-            Name = "Form1";
-            Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)numericUpDownLength).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDownTimeout).EndInit();
-            ResumeLayout(false);
-            PerformLayout();
+
+            listHistory = new ListBox();
+            listHistory.Location = new Point(420, 50);
+            listHistory.Size = new Size(430, 440);
+
+            // Add controls to Password tab
+            tabPagePassword.Controls.Add(lblPassword);
+            tabPagePassword.Controls.Add(txtPassword);
+            tabPagePassword.Controls.Add(btnGenerate);
+            tabPagePassword.Controls.Add(numericUpDownLength);
+            tabPagePassword.Controls.Add(checkBoxUppercase);
+            tabPagePassword.Controls.Add(checkBoxNumbers);
+            tabPagePassword.Controls.Add(checkBoxSymbols);
+            tabPagePassword.Controls.Add(lblStrength);
+            tabPagePassword.Controls.Add(progressBarStrength);
+            tabPagePassword.Controls.Add(buttonCopy);
+            tabPagePassword.Controls.Add(comboBoxTheme);
+            tabPagePassword.Controls.Add(numericUpDownTimeout);
+            tabPagePassword.Controls.Add(buttonSavePrefs);
+            tabPagePassword.Controls.Add(buttonLoadPrefs);
+            tabPagePassword.Controls.Add(listHistory);
+
+            // =========================================================
+            // TAB 2 — USERS GRID
+            // =========================================================
+
+            dataGridUsers = new DataGridView();
+            dataGridUsers.Location = new Point(10, 10);
+            dataGridUsers.Size = new Size(840, 520);
+            dataGridUsers.ReadOnly = true;
+            dataGridUsers.AllowUserToAddRows = false;
+            dataGridUsers.AllowUserToDeleteRows = false;
+            dataGridUsers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
+            tabPageUsers.Controls.Add(dataGridUsers);
+
+            // =========================================================
+            // TAB 3 — PASSWORD HISTORY GRID
+            // =========================================================
+
+            dataGridPasswords = new DataGridView();
+            dataGridPasswords.Location = new Point(10, 10);
+            dataGridPasswords.Size = new Size(840, 520);
+            dataGridPasswords.ReadOnly = true;
+            dataGridPasswords.AllowUserToAddRows = false;
+            dataGridPasswords.AllowUserToDeleteRows = false;
+            dataGridPasswords.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
+            tabPageHistory.Controls.Add(dataGridPasswords);
+
+            // =========================================================
+            // TAB 4 — FILTERS
+            // =========================================================
+
+            lblFilterField = new Label();
+            lblFilterField.Location = new Point(20, 20);
+            lblFilterField.AutoSize = true;
+            lblFilterField.Text = "Field:";
+
+            comboFilterField = new ComboBox();
+            comboFilterField.Location = new Point(20, 50);
+            comboFilterField.Size = new Size(200, 28);
+            comboFilterField.Items.AddRange(new string[] {
+                "Name", "Email", "Age",
+                "Strength", "Length",
+                "ContainsUppercase", "ContainsNumbers", "ContainsSymbols"
+            });
+
+            lblFilterOp = new Label();
+            lblFilterOp.Location = new Point(250, 20);
+            lblFilterOp.AutoSize = true;
+            lblFilterOp.Text = "Operator:";
+
+            comboFilterOp = new ComboBox();
+            comboFilterOp.Location = new Point(250, 50);
+            comboFilterOp.Size = new Size(150, 28);
+            comboFilterOp.Items.AddRange(new string[] { "=", ">", "<", "Contains" });
+
+            lblFilterValue = new Label();
+            lblFilterValue.Location = new Point(420, 20);
+            lblFilterValue.AutoSize = true;
+            lblFilterValue.Text = "Value:";
+
+            txtFilterValue = new TextBox();
+            txtFilterValue.Location = new Point(420, 50);
+            txtFilterValue.Size = new Size(200, 27);
+
+            btnApplyFilter = new Button();
+            btnApplyFilter.Location = new Point(20, 100);
+            btnApplyFilter.Size = new Size(150, 30);
+            btnApplyFilter.Text = "Apply Filter";
+            btnApplyFilter.Click += btnApplyFilter_Click;
+
+            btnResetFilter = new Button();
+            btnResetFilter.Location = new Point(200, 100);
+            btnResetFilter.Size = new Size(150, 30);
+            btnResetFilter.Text = "Reset Filter";
+            btnResetFilter.Click += btnResetFilter_Click;
+
+            tabPageFilters.Controls.Add(lblFilterField);
+            tabPageFilters.Controls.Add(comboFilterField);
+            tabPageFilters.Controls.Add(lblFilterOp);
+            tabPageFilters.Controls.Add(comboFilterOp);
+            tabPageFilters.Controls.Add(lblFilterValue);
+            tabPageFilters.Controls.Add(txtFilterValue);
+            tabPageFilters.Controls.Add(btnApplyFilter);
+            tabPageFilters.Controls.Add(btnResetFilter);
+
+            // =============================
+            // ADD TO FORM
+            // =============================
+            Controls.Add(tabControlMain);
         }
 
         #endregion
 
+        private TabControl tabControlMain;
+        private TabPage tabPagePassword;
+        private TabPage tabPageUsers;
+        private TabPage tabPageHistory;
+        private TabPage tabPageFilters;
+
+        // TAB 1 Controls
         private Label lblPassword;
+        private TextBox txtPassword;
         private Button btnGenerate;
         private NumericUpDown numericUpDownLength;
         private CheckBox checkBoxUppercase;
@@ -230,6 +261,18 @@
         private Button buttonSavePrefs;
         private Button buttonLoadPrefs;
 
-        private TextBox txtPassword;   // <-- FIELD DECLARATION ADDED
+        // TAB 2 + TAB 3
+        private DataGridView dataGridUsers;
+        private DataGridView dataGridPasswords;
+
+        // TAB 4 Filters
+        private Label lblFilterField;
+        private ComboBox comboFilterField;
+        private Label lblFilterOp;
+        private ComboBox comboFilterOp;
+        private Label lblFilterValue;
+        private TextBox txtFilterValue;
+        private Button btnApplyFilter;
+        private Button btnResetFilter;
     }
 }

@@ -8,4 +8,27 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.118" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="CreateDatabase.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="InsertSampleUsers.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+	<ItemGroup>
+		<Compile Update="Form1.cs" />
+		<Compile Update="Form1.Designer.cs">
+			<DependentUpon>Form1.cs</DependentUpon>
+		</Compile>
+		<Compile Update="Form1.resx">
+			<DependentUpon>Form1.cs</DependentUpon>
+		</Compile>
+	</ItemGroup>
+
+
 </Project>

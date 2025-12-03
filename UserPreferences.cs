@@ -5,11 +5,27 @@ namespace SODV2202_Final
 {
     public class UserPreferences
     {
+        // Original properties
         public int Length { get; set; }
         public bool IncludeUppercase { get; set; }
         public bool IncludeNumbers { get; set; }
         public bool IncludeSymbols { get; set; }
         public string Theme { get; set; } = "Light";
+
+        // ------------- REQUIRED BY FORM1.cs -------------
+        // Form1.cs expects: PasswordLength
+        public int PasswordLength
+        {
+            get => Length;
+            set => Length = value;
+        }
+
+        // Form1.cs expects: Save()
+        public void Save() => SaveSettings();
+
+        // Form1.cs expects: Load()
+        public void Load() => LoadSettings();
+        // -------------------------------------------------
 
         private string FilePath => "userprefs.json";
 
